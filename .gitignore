@@ -1,0 +1,5 @@
+car_inventory_env
+.env
+migrations
+__pychache__
+image_cache.sqlite
