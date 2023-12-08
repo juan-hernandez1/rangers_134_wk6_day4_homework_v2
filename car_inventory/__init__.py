@@ -20,7 +20,7 @@ jwt = JWTManager(app)
 #wrap our app in login_manager so we can use it wherever in our app
 login_manager.init_app(app)
 login_manager.login_view = 'auth.sign_in' 
-login_manager.login_message = "Your Log In Is Required!"
+login_manager.login_message = "You Need To Sign In To Continue!"
 login_manager.login_message_category = 'warning'
 
 

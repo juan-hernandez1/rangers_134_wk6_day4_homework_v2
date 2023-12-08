@@ -43,21 +43,22 @@ def create():
 
     if request.method == 'POST' and createform.validate_on_submit():
         # grab our data from our form
-        name = createform.name.data
+        year = createform.year.data
         image = createform.image.data
-        description = createform.description.data
+        make = createform.make.data
+        model = createform.model.data
         price = createform.price.data
         quantity = createform.quantity.data
        
 
      # instantiate that class as an object passing in our arguments to replace our parameters
 
-        vehicle = Product(name, price, quantity, image, description)  
+        vehicle = Product(year, price, quantity, make, model, image)  
 
         db.session.add(vehicle) # adding our new instantiating object to our database
         db.session.commit()
 
-        flash(f"You have successfully created vehicle {name}", category='success')
+        flash(f"You have successfully created vehicle: {year} {make} {model}", category='success')
         return redirect('/garage')
     
     elif request.method == 'POST':
@@ -77,9 +78,10 @@ def update(id):
 
     if request.method == 'POST' and updateform.validate_on_submit():
 
-        vehicle.name = updateform.name.data
+        vehicle.year = updateform.year.data
         vehicle.image = updateform.image.data
-        vehicle.description = updateform.description.data
+        vehicle.make = updateform.make.data
+        vehicle.model = updateform.model.data
         vehicle.price = updateform.price.data
         vehicle.quantity = updateform.quantity.data
         
@@ -87,7 +89,7 @@ def update(id):
         # commit our changes
         db.session.commit()
 
-        flash(f"You have successfully updated vehicle {vehicle.name}", category='success')
+        flash(f"You have successfully updated vehicle: {vehicle.year} {vehicle.make} {vehicle.model}", category='success')
         return redirect('/garage')
     
     elif request.method == 'POST':
@@ -106,4 +108,4 @@ def delete(id):
     db.session.delete(vehicle)
     db.session.commit()
 
-    return redirect('/')
+    return redirect('/garage')

@@ -1,9 +1,9 @@
 <form action="" method='POST' class="row g-3">
     {{ form.hidden_tag() }}
     <div class="col-12">
-        {{ form.name.label }}
-        {{ form.name(class='form-control mt-2', placeholder='2024 BMW X6') }}
-        {% for error in form.name.errors %}
+        {{ form.year.label }}
+        {{ form.year(class='form-control mt-2', placeholder='2024') }}
+        {% for error in form.year.errors %}
             <span class="err-msg">{{ error }}</span>
         {% endfor %}
     </div>
@@ -12,8 +12,12 @@
         {{ form.image(class='form-control mt-2') }}
     </div>
     <div class="col-12">
-        {{ form.description.label }}
-        {{ form.description(class='form-control mt-2', placeholder='Sports SUV') }}
+        {{ form.make.label }}
+        {{ form.make(class='form-control mt-2', placeholder='BMW') }}
+    </div>
+    <div class="col-12">
+        {{ form.model.label }}
+        {{ form.model(class='form-control mt-2', placeholder='X6') }}
     </div>
     <div class="col-12">
         {{ form.price.label }}

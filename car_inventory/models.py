@@ -70,19 +70,22 @@ class User(db.Model, UserMixin):
 
 class Product(db.Model):
     prod_id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    year = db.Column(db.String, nullable=False)
     image = db.Column(db.String)
-    description = db.Column(db.String(200))
+    make = db.Column(db.String(10))
+    model = db.Column(db.String(20))
     price = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     date_added = db.Column(db.DateTime, default = datetime.utcnow)
      
 
-    def __init__(self, name, price, quantity, image="", description=""):
+    def __init__(self, year, price, quantity, make, model, image=""):
+        name = f"{year} {make} {model}"
         self.prod_id = self.set_id()
-        self.name = name
+        self.year = year
         self.image = self.set_image(image, name)
-        self.description = description
+        self.make = make
+        self.model = model
         self.price = price
         self.quantity = quantity
 
@@ -94,9 +97,8 @@ class Product(db.Model):
     def set_image(self, image, name):
 
         if not image: #aka the user did not give us an image
-            print('we dont have an image')
+            print("we don't have an image")
             image = get_image(name)
-
         return image
     
 
@@ -112,7 +114,7 @@ class Product(db.Model):
         return self.quantity
     
     def __repr__(self):
-        return f"<Vehicle: {self.name}>"
+        return f"<Vehicle: {self.year} {self.make} {self.model}>"
     
 
 
@@ -229,7 +231,7 @@ class Order(db.Model):
 class ProductSchema(ma.Schema):
 
     class Meta:
-        fields = ['prod_id', 'name', 'image', 'description', 'price', 'quantity']
+        fields = ['prod_id', 'year', 'image', 'make', 'model', 'price', 'quantity']
 
 
 

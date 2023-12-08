@@ -20,9 +20,10 @@ class RegisterForm(FlaskForm):
 
 
 class ProductForm(FlaskForm):
-    name = StringField('Vehicle Year - Make - Model', validators=[ DataRequired() ] )
+    year = StringField('Year', validators=[ DataRequired() ] )
     image = StringField('Img url **Optional')
-    description = StringField('Description **Optional')
+    make = StringField('Make', validators=[ DataRequired() ] )
+    model = StringField('Model', validators=[ DataRequired() ] )
     price = DecimalField('Price', validators=[ DataRequired() ])
     quantity = IntegerField('Quantity', validators=[ DataRequired() ])
     submit = SubmitField('Submit')
