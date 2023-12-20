@@ -24,6 +24,7 @@ class ProductForm(FlaskForm):
     image = StringField('Img url **Optional')
     make = StringField('Make', validators=[ DataRequired() ] )
     model = StringField('Model', validators=[ DataRequired() ] )
+    description = StringField('Description', validators=[ DataRequired() ])
     price = DecimalField('Price', validators=[ DataRequired() ])
     quantity = IntegerField('Quantity', validators=[ DataRequired() ])
     submit = SubmitField('Submit')

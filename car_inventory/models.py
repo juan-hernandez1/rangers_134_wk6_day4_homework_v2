@@ -74,18 +74,20 @@ class Product(db.Model):
     image = db.Column(db.String)
     make = db.Column(db.String(10))
     model = db.Column(db.String(20))
+    description = db.Column(db.String(20))
     price = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     date_added = db.Column(db.DateTime, default = datetime.utcnow)
      
 
-    def __init__(self, year, price, quantity, make, model, image=""):
+    def __init__(self, year, price, quantity, make, model, image="", description=""):
         name = f"{year} {make} {model}"
         self.prod_id = self.set_id()
         self.year = year
         self.image = self.set_image(image, name)
         self.make = make
         self.model = model
+        self.description = description
         self.price = price
         self.quantity = quantity
 
@@ -231,7 +233,7 @@ class Order(db.Model):
 class ProductSchema(ma.Schema):
 
     class Meta:
-        fields = ['prod_id', 'year', 'image', 'make', 'model', 'price', 'quantity']
+        fields = ['prod_id', 'year', 'image', 'make', 'model', 'description', 'price', 'quantity']
 
 
 

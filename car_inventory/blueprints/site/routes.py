@@ -47,13 +47,14 @@ def create():
         image = createform.image.data
         make = createform.make.data
         model = createform.model.data
+        description = createform.description.data
         price = createform.price.data
         quantity = createform.quantity.data
        
 
      # instantiate that class as an object passing in our arguments to replace our parameters
 
-        vehicle = Product(year, price, quantity, make, model, image)  
+        vehicle = Product(year, price, quantity, make, model, image, description)  
 
         db.session.add(vehicle) # adding our new instantiating object to our database
         db.session.commit()
@@ -82,6 +83,7 @@ def update(id):
         vehicle.image = updateform.image.data
         vehicle.make = updateform.make.data
         vehicle.model = updateform.model.data
+        vehicle.description = updateform.description.data
         vehicle.price = updateform.price.data
         vehicle.quantity = updateform.quantity.data
         
@@ -108,4 +110,5 @@ def delete(id):
     db.session.delete(vehicle)
     db.session.commit()
 
+    flash(f"You have successfully deleted vehicle: {vehicle.year} {vehicle.make} {vehicle.model}", category='success')
     return redirect('/garage')

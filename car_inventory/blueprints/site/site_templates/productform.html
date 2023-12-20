@@ -20,6 +20,10 @@
         {{ form.model(class='form-control mt-2', placeholder='X6') }}
     </div>
     <div class="col-12">
+        {{ form.description.label }}
+        {{ form.description(class='form-control mt-2', placeholder='Sports SUV') }}
+    </div>
+    <div class="col-12">
         {{ form.price.label }}
         {{ form.price(class='form-control mt-2', placeholder='$80000.00') }}
         {% for error in form.price.errors %}
